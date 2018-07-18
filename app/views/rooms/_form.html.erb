@@ -1,0 +1,30 @@
+<% if @room.errors.any? %>
+  <div id="error_explanation">
+    Há erros no formulário, por favor verifique.
+  </div>
+<% end %>
+
+<%= form_with(model: room, local: true) do |form| %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+    <%= error_tag @room, :title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :location %>
+    <%= form.text_field :location %>
+    <%= error_tag @room, :location %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+    <%= error_tag @room, :description %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
