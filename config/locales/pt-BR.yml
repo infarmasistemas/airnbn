@@ -1,0 +1,57 @@
+pt-BR:
+  layout:
+    rooms: Quartos
+    signup: Cadastro
+  general:
+    form_error: Há erros no formulário, por favor verifique.
+  users:
+    new:
+      title: Cadastro
+      save: Salvar
+    edit:
+      title: Editar perfil
+      save: Atualizar
+    show:
+      title: "Perfil: %{user_name}"
+      edit: 'Editar perfil'
+      location: "Localização: %{location}"
+      bio: "Bio: %{bio}"
+    links:
+      back: Voltar
+      show: Visualizar
+  rooms:
+    title: Quartos
+    location: Localização
+    description: Descrição
+    show: Visualizar
+    edit: Editar
+    destroy: Remover
+    new:
+      title: Cadastrar novo quarto
+    show:
+      edit: Atualizar
+      back: Voltar
+      title: 'Quartos:'
+      location: 'Localização:'
+      description: 'Descrição:'
+    edit:
+      title: Editar quarto
+      save: Atualizar
+    links:
+      back: Voltar
+      show: Visualizar
+      edit: Editar
+      destroy: Remover
+  activerecord:
+    attributes:
+      user:
+        bio: Biografia
+        email: Email
+        full_name: Nome completo
+        location: Localização
+        password: Senha
+        password_confirmation: Confirme sua senha
+      room:
+        description: Descrição
+        location: Localização
+        title: Título
