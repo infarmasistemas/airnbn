@@ -3,5 +3,5 @@
   <li>Localização: <%= @user.location %> </li>
   <li>Bio: <%= @user.bio %> </li>
 </ul>
-<%= link_to 'Editar Perfil', edit_user_path(@user) %>
-<%= link_to 'Home', root_path %>
+<%= link_to t('users.show.edit'), edit_user_path(@user) %>
+<%= link_to t('users.show.back'), root_path %>

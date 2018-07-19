@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   scope "(:locale)", :locale => LOCALES do
     resources :rooms
     resources :users
-    resource :user_confirmation, :only => [:show]
+
+    #resource pois existe apenas uma confirmação (recurso singleton)
+    resource :confirmation, :only => [:show]
   end
 
   # necessário especificar método em que irá pegar o symbol :locale

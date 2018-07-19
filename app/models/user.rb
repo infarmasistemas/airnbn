@@ -10,4 +10,23 @@ class User < ApplicationRecord
 
   # BCrypt
   has_secure_password
+
+  # gerando tokens para confirmação de criação de conta do usuário
+  before_create :generate_token
+  def generate_token
+    self.confirmation_token = SecureRandom.urlsafe_base64
+  end
+
+  # registra o momento da confirmação e limpa o token do usuário
+  def confirm!
+    return if confirmed?
+    self.confirmed_at = Time.current
+    self.confirmation_token = ''
+    save!
+  end
+
+  # verifica se usuário foi confirmado, caso sim retorna true
+  def confirmed?
+    confirmed_at.present?
+  end
 end

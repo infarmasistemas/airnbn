@@ -11,6 +11,8 @@ class UsersController < ApplicationController
     # retorna um hash com todos os parâmetros enviados pelo usuário, seja via formulário ou via query string.
     @user = User.new(allowed_params)
     if @user.save
+      #envia email ao usuário confirmando o cadastro
+      SignupMailer.confirm_email(@user).deliver
       redirect_to @user,
                   :notice => 'Cadastro realizado com sucesso!'
     else
