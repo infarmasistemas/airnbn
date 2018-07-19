@@ -8,6 +8,9 @@ Rails.application.routes.draw do
 
     #resource pois existe apenas uma confirmação (recurso singleton)
     resource :confirmation, :only => [:show]
+
+    # rotas para seções
+    resource :user_sessions, :only => [:create, :new, :destroy]
   end
 
   # necessário especificar método em que irá pegar o symbol :locale
