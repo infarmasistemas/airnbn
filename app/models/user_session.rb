@@ -12,6 +12,14 @@ class UserSession
     @password = attributes[:password]
   end
 
+  def current_user
+    User.find(@session[:user_id])
+  end
+
+  def user_signed_in?
+    @session[:user_id].present?
+  end
+
   # verifica a entrada de dados do usuário
   def authenticate
     user = User.authenticate(@email, @password)
@@ -23,9 +31,14 @@ class UserSession
     end
   end
 
-  # salva a sessão do usuário
+  # guarda a sessão do usuário
   def store(user)
     @session[:user_id] = user.id
+  end
+
+  # remove a sessão do usuário ao clicar em logout
+  def destroy
+    @session[:user_id] = nil
   end
 
   def persisted?

@@ -1,4 +1,6 @@
 class Room < ApplicationRecord
+  belongs_to :user
+
   # validações do modelo room
   validates_presence_of :title, :location, :description
   validates_length_of :title, :minimum => 10, :allow_blank => false
@@ -8,4 +10,5 @@ class Room < ApplicationRecord
   def complete_name
     "#{title}, #{location}"
   end
+
 end
