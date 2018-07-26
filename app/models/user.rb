@@ -23,7 +23,7 @@ class User < ApplicationRecord
   # gerando tokens para confirmação de criação de conta do usuário
   before_create :generate_token
   def generate_token
-    self.confirmation_token = S ecureRandom.urlsafe_base64
+    self.confirmation_token = SecureRandom.urlsafe_base64
   end
 
   # registra o momento da confirmação e limpa o token do usuário

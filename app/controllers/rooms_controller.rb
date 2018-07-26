@@ -3,7 +3,8 @@ class RoomsController < ApplicationController
                 :only => [:new, :edit, :create, :update, :destroy]
 
   def index
-    @rooms = Room.most_recent
+    # retorna quartos em order decrescente
+    @rooms = Room.order(created_at: :desc)
   end
 
   def show
@@ -33,12 +34,14 @@ class RoomsController < ApplicationController
     @room = current_user.rooms.find(params[:id])
 
     respond_to do |format|
-        if @room.update_attributes(room_params)
-          redirect_to @room, :notice => t('flash.notice.room_updated')
-        else
-          render :action => "edit"
-        end
-     end
+      if @room.update_attributes(room_params)
+        # https://stackoverflow.com/questions/30148802/why-completed-406-not-acceptable-has-gone-after-removing-respond-to?rq=1
+        # redirect_to @room, :notice => t('flash.notice.room_updated')
+        format.html { render => 'foi'  }
+      else
+        render :action => "edit"
+      end
+    end
   end
 
   def destroy
@@ -46,13 +49,6 @@ class RoomsController < ApplicationController
     @room.destroy
 
     redirect_to rooms_url
-  end
-
-  def most_recent
-    # retorna os quartos mais recentes baseados no id
-    # equivalente ao sql
-    # select * from room order by id desc
-    @room = Room.order(:id).reverse_order
   end
 
   private
